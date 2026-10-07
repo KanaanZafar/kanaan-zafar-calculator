@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Split a restaurant bill equally, tax and tip included, exact to the cent." />
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#16181b" media="(prefers-color-scheme: dark)" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23126b55'/%3E%3Cpath d='M9 9h14M9 16h14M9 23h8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <title>Bill Splitter</title>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <h1>Bill Splitter</h1>
+        <p class="tagline">Split a restaurant bill equally, tax and tip included, exact to the cent.</p>
+      </header>
+
+      <div class="layout">
+        <form id="bill-form" class="card bill-form" novalidate autocomplete="off" aria-labelledby="form-heading">
+          <h2 id="form-heading" class="section-heading">The bill</h2>
+
+          <div class="field">
+            <label for="subtotal">Subtotal</label>
+            <div class="input-wrap has-prefix">
+              <span class="affix" aria-hidden="true">$</span>
+              <input
+                id="subtotal"
+                name="subtotal"
+                type="text"
+                inputmode="decimal"
+                enterkeyhint="next"
+                spellcheck="false"
+                placeholder="0.00"
+                aria-describedby="subtotal-hint"
+              />
+            </div>
+            <p id="subtotal-hint" class="hint">From the receipt, before tax and tip.</p>
+            <p id="subtotal-error" class="error" hidden></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="taxRate">Tax rate (%)</label>
+              <div class="input-wrap">
+                <input
+                  id="taxRate"
+                  name="taxRate"
+                  type="text"
+                  inputmode="decimal"
+                  enterkeyhint="next"
+                  spellcheck="false"
+                  placeholder="0–30"
+                  aria-describedby="taxRate-hint"
+                />
+              </div>
+              <p id="taxRate-hint" class="hint">Use 0 if there is no tax.</p>
+              <p id="taxRate-error" class="error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="tipRate">Tip rate (%)</label>
+              <div class="input-wrap">
+                <input
+                  id="tipRate"
+                  name="tipRate"
+                  type="text"
+                  inputmode="decimal"
+                  enterkeyhint="next"
+                  spellcheck="false"
+                  placeholder="0–100"
+                  aria-describedby="tipRate-hint"
+                />
+              </div>
+              <p id="tipRate-hint" class="hint">On the subtotal, before tax.</p>
+              <p id="tipRate-error" class="error" hidden></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="people">Number of people</label>
+            <div class="input-wrap">
+              <input
+                id="people"
+                name="people"
+                type="text"
+                inputmode="numeric"
+                enterkeyhint="done"
+                spellcheck="false"
+                placeholder="1–100"
+                aria-describedby="people-hint"
+              />
+            </div>
+            <p id="people-hint" class="hint">Including the person who paid.</p>
+            <p id="people-error" class="error" hidden></p>
+          </div>
+        </form>
+
+        <section class="card results" aria-labelledby="results-heading">
+          <h2 id="results-heading" class="section-heading">The split</h2>
+
+          <p id="results-empty" class="results-empty"></p>
+
+          <div id="results-body" hidden>
+            <dl class="breakdown">
+              <div class="row"><dt>Subtotal</dt><dd id="out-subtotal"></dd></div>
+              <div class="row"><dt>Tax</dt><dd id="out-tax"></dd></div>
+              <div class="row"><dt>Tip</dt><dd id="out-tip"></dd></div>
+              <div class="row total"><dt>Total</dt><dd id="out-total"></dd></div>
+            </dl>
+
+            <h3 class="sub-heading">Each person pays</h3>
+            <ul id="out-shares" class="shares"></ul>
+
+            <div class="collect">
+              <span class="collect-label">Amount to collect from others</span>
+              <span id="out-collect" class="collect-amount"></span>
+            </div>
+          </div>
+
+          <p id="announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
