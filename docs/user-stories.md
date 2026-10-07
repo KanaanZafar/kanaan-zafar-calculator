@@ -43,7 +43,7 @@ These rules apply to every criterion below.
 - Shares are listed in one of two ways:
   - `Person 1 (paid the bill): $X`, followed by `Persons 2–N: $Y each` when there are three or more people.
   - `Person 1 (paid the bill): $X`, followed by `Person 2: $Y` when there are two people.
-- When there is no result, the results area shows only: *Enter the subtotal, tax, tip and number of people to see the split.*
+- The results area always has the heading **The split**. When there is no result, the only other thing it shows is: *Enter the subtotal, tax, tip and number of people to see the split.*
 
 **Live updates.** There is no Calculate button. The results update on every change to any field.
 
@@ -67,7 +67,7 @@ As a Group Diner, I want to see the tax, tip, total and each person's share as s
 
 **Acceptance criteria**
 
-1. **App opens.** Given the app is not open, when I open it, then all four fields are empty, no error messages are shown, no results are shown, and the results area shows *Enter the subtotal, tax, tip and number of people to see the split.*
+1. **App opens.** Given the app is not open, when I open it, then all four fields are empty, no error messages are shown, no results are shown, and the results area shows only the heading **The split** and *Enter the subtotal, tax, tip and number of people to see the split.*
 2. **Partly filled.** Given the app has just opened, when I enter only subtotal `100.00` and tax `8.875`, then no results are shown and no errors are shown for the tip and people fields I have not visited.
 3. **Main example, totals.** Given the form is empty, when I enter subtotal `100.00`, tax `8.875`, tip `18` and people `3`, then, without pressing any button, I see:
    - Subtotal $100.00
