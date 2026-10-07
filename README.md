@@ -1,5 +1,7 @@
 # Bill Splitter
 
+**Live app:** https://kanaanzafar.github.io/kanaan-zafar-calculator/
+
 A web app that splits a restaurant bill equally, with tax and tip included, exact to the cent. You enter the subtotal, tax rate, tip rate and number of people. Results update as you type: the tax, tip and total, what each person owes, and how much the person who paid needs to collect from everyone else.
 
 ## Who it is for and why a bill splitter
@@ -58,6 +60,12 @@ npm run build
 npm run preview
 ```
 
+Then open the URL Vite prints, normally http://localhost:4173/. The production build loads its files from the GitHub Pages base path `/kanaan-zafar-calculator/`, which the preview server also serves. `npm run dev` and the tests use the root path `/`.
+
+## Deployment
+
+Every push to `main` runs [.github/workflows/deploy.yml](.github/workflows/deploy.yml). It runs the tests and the build on Node 20 and Node 22, then builds the site and deploys it to GitHub Pages at the live URL above. The base path `/kanaan-zafar-calculator/` is set in [vite.config.ts](vite.config.ts) for production builds only.
+
 ## Tests
 
 ```bash
@@ -95,6 +103,8 @@ src/core/split.ts     The calculation in whole cents (BigInt)
 src/core/format.ts    Cents → "$1,234.56", share lines, screen reader summary
 src/core/form.ts      Combines the four fields; decides which errors are visible
 src/core/*.test.ts    Vitest tests
+vite.config.ts        GitHub Pages base path for production builds only
+.github/workflows/    Test on Node 20 and 22, then deploy to GitHub Pages
 docs/                 App roles, Jobs To Be Done, user stories
 transcripts/          Claude Code session transcripts
 ```
